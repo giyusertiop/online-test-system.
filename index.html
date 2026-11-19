@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>БілімТест — онлайн тестілеу жүйесі</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Басты бетке өту"><span class="brand-icon">✓</span> БілімТест</a>
+    <div class="top-actions">
+      <span class="saved-label">Нәтижелер осы құрылғыда сақталады</span>
+      <button id="themeBtn" class="icon-btn" type="button" aria-label="Түсті ауыстыру">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="homeScreen" class="screen">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">ОНЛАЙН ТЕСТІЛЕУ ПЛАТФОРМАСЫ</span>
+          <h1>Біліміңді тексер,<br><span>мақсатыңа жақында!</span></h1>
+          <p class="hero-text">Пәнді таңда, сұрақтарға жауап бер және нәтижені бірден көр.</p>
+          <div class="feature-row">
+            <span>✓ Автоматты тексеру</span>
+            <span>◷ Уақыт есептегіш</span>
+            <span>▤ Нәтижелер тарихы</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-card card-one">✓ <small>Дұрыс жауап</small></div>
+          <div class="art-card card-two">A B C D <small>Таңда да жауап бер</small></div>
+          <div class="art-circle">?</div>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div><h2>Тестті бастау</h2><p>Өзіңе қажетті пәнді таңда.</p></div>
+        <span class="pill">3 пән қолжетімді</span>
+      </div>
+
+      <form id="startForm" class="start-panel">
+        <label for="studentName">Оқушының аты</label>
+        <input id="studentName" name="studentName" type="text" maxlength="40" placeholder="Атыңды енгіз" autocomplete="name" required>
+        <label>Пәнді таңда</label>
+        <div class="subject-grid">
+          <label class="subject-option">
+            <input type="radio" name="subject" value="informatics" checked>
+            <span class="subject-card"><span class="subject-icon purple">⌘</span><strong>Информатика</strong><small>5 сұрақ · 5 минут</small></span>
+          </label>
+          <label class="subject-option">
+            <input type="radio" name="subject" value="math">
+            <span class="subject-card"><span class="subject-icon blue">＋</span><strong>Математика</strong><small>5 сұрақ · 5 минут</small></span>
+          </label>
+          <label class="subject-option">
+            <input type="radio" name="subject" value="english">
+            <span class="subject-card"><span class="subject-icon orange">A</span><strong>Ағылшын тілі</strong><small>5 сұрақ · 5 минут</small></span>
+          </label>
+        </div>
+        <button class="primary-btn full-btn" type="submit">Тестті бастау <span>→</span></button>
+      </form>
+
+      <section class="history-section">
+        <div class="section-heading">
+          <div><h2>Нәтижелер тарихы</h2><p>Бұрын тапсырған тесттерің осында көрсетіледі.</p></div>
+          <button id="clearHistoryBtn" class="text-btn" type="button">Тарихты тазалау</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+    </section>
+
+    <section id="quizScreen" class="screen hidden">
+      <div class="quiz-top">
+        <button id="quitBtn" class="back-btn" type="button">← Басты бет</button>
+        <div class="timer" id="timer">◷ 05:00</div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-meta"><span id="quizSubject" class="pill">Информатика</span><span id="questionCount">1 / 5 сұрақ</span></div>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+        <h2 id="questionText">Сұрақ мәтіні</h2>
+        <div id="answers" class="answers"></div>
+        <p id="answerFeedback" class="feedback" aria-live="polite"></p>
+        <div class="quiz-controls">
+          <button id="prevBtn" class="secondary-btn" type="button">← Алдыңғы</button>
+          <button id="nextBtn" class="primary-btn" type="button">Келесі →</button>
+          <button id="finishBtn" class="primary-btn hidden" type="button">Тестті аяқтау</button>
+        </div>
+      </div>
+      <p class="quiz-note">Жауаптарың автоматты түрде белгіленеді. Тестті уақыт аяқталмай тұрып та аяқтай аласың.</p>
+    </section>
+
+    <section id="resultScreen" class="screen hidden">
+      <div class="result-card">
+        <div class="result-symbol" id="resultSymbol">✓</div>
+        <span class="eyebrow">ТЕСТ АЯҚТАЛДЫ</span>
+        <h1 id="resultTitle">Жарайсың!</h1>
+        <p id="resultSubtitle">Нәтижең дайын.</p>
+        <div class="score-ring"><strong id="scorePercent">0%</strong><span>нәтиже</span></div>
+        <div class="score-stats">
+          <div><strong id="correctCount">0</strong><span>Дұрыс</span></div>
+          <div><strong id="wrongCount">0</strong><span>Қате</span></div>
+          <div><strong id="scorePoints">0/5</strong><span>Ұпай</span></div>
+        </div>
+        <div class="result-actions">
+          <button id="reviewBtn" class="secondary-btn" type="button">Жауаптарды талдау</button>
+          <button id="againBtn" class="primary-btn" type="button">Қайта тапсыру ↻</button>
+          <button id="homeBtn" class="text-btn" type="button">Басты бетке оралу</button>
+        </div>
+      </div>
+      <div id="reviewPanel" class="review-panel hidden">
+        <h2>Жауаптарды талдау</h2>
+        <div id="reviewList"></div>
+      </div>
+    </section>
+
+    <footer><span>БілімТест</span> · Оқу мақсатында жасалған жоба</footer>
+  </main>
+</body>
+</html>
